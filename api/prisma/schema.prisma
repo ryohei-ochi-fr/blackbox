@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ps> npx prisma generate
+generator nestjsDto {
+  provider                        = "prisma-generator-nestjs-dto"
+  output                          = "../src"
+  outputToNestJsResourceStructure = "true"
+}
+
+
+// [Prisma schema API (Reference) | Prisma Docs](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#model-fields)
+model record {
+  ID            Int      @id @default(autoincrement())
+  GPS_DATETIME  DateTime
+  ZDA_DATE      String
+  GGA_UTC       String
+  GGA_STATUS    String? // 測位モードステータス
+  GGA_LAT       Float? // 緯度
+  GGA_LOG       Float? // 経度
+  GGA_ALT       Float? // 高度(m) 標高 = 高度 - ジオイド高
+  GGA_GEOID     Float? // ジオイド高(m)
+  VTG_SPEED     Float? // 対地速度
+  VYG_STATUS    String? // 測位モードステータス
+  AIR_TEMP      Float?
+  AIR_HUMIDITY  Float?
+  AIR_PRESSURE  Float?
+  CYLINDER_TEMP Float?
+  G_X           Float? // 加速度(X)
+  G_Y           Float? // 加速度(Y)
+  G_Z           Float? // 加速度(Z)
+  TACO          Int? // 回転数(rpm)
+  THROTTLE      Int? // スロットル開度
+  VACUUM        Float? // 吸気負圧
+  CREATE_AT     DateTime @default(now())
+}

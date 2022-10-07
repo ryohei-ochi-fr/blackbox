@@ -80,7 +80,7 @@ origin  git@github.com:ryohei-ochi-fr/project-name.git (push)
 
 エラーの修正、urlを整える
 ```powershell
-git remote set-url origin https://ryohei-ochi-fr@github.com/ryohei-ochi-fr/project-name.git
+git remote set-url origin https://ryohei-ochi-fr@github.com/ryohei-ochi-fr/blackbox.git
 ```
 
 
@@ -104,6 +104,11 @@ git push -u origin master
 ```
 
 
+
+[Versioning | NestJS - A progressive Node.js framework](https://docs.nestjs.com/techniques/versioning)
+
+
+
 # メモ
 ```powershell
 cd gathering
@@ -111,7 +116,62 @@ nest new api
 cd api
 npm i
 
-nest g resource calender
+npm init -y
+npm install typescript ts-node @types/node --save-dev
+npm install prisma --save-dev
+npx prisma init --datasource-provider sqlite
+
+## The Prisma schema provides an intuitive way to model data. Add the following models to your schema.prisma file:
+
+
+npx prisma migrate dev --name init
+
+## PrismaStudio の起動
+npx prisma studio
+
+
+
+nest g resource record
+
+
+
+
+npm install typescript ts-node @types/node --save-dev
+npm install prisma --save-dev
+npx prisma init --datasource-provider sqlite
+
+npm install --save-dev @vegardit/prisma-generator-nestjs-dto
+
+
+[Prisma 基礎](https://zenn.dev/smish0000/articles/f1a6f463417b65)
+[Build a REST API with NestJS, Prisma, PostgreSQL and Swagger](https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0)
+
+npx prisma generate
+
+npx nest generate module prisma
+npx nest generate service prisma
+
+
+
+
+## スキーマを変更した場合
+npx prisma generate
+npx prisma migrate dev --name init
+
+
+
+
+
+
+
+[Build a REST API with NestJS, Prisma, PostgreSQL and Swagger](https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0)
+
+npm i @nestjs/swagger swagger-ui-express --save
+
+[Integrating Swagger with a NestJS Application | by Anukriti Garg | Medium](https://anukritigarg13.medium.com/integrating-swagger-with-a-nestjs-application-f5a7e44ad8c8)
+
+
+
 npm i --save @nestjs/typeorm typeorm sqlite3
 vi ormconfig.json
 vi api\src\tasks\entities\calender.entity.ts
@@ -120,6 +180,6 @@ npx typeorm migration:generate -d src/database/migrations -n create-calender
 npm run build
 npx typeorm migration:run
 
-npm i @nestjs/swagger swagger-ui-express --save
+
 
 ```
